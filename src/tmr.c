@@ -90,3 +90,39 @@ int test_tmr(void)
 
 	return err;
 }
+
+
+int test_tmr_jiffies(void)
+{
+	uint64_t tmr_start, tmr_end, diff;
+	int err = 0;
+
+	tmr_start = tmr_jiffies();
+	sys_msleep(1);
+	tmr_end = tmr_jiffies();
+	diff = tmr_end - tmr_start;
+
+	TEST_ASSERT(diff >= 1);
+	TEST_ASSERT(diff < 10);
+
+out:
+	return err;
+}
+
+
+int test_tmr_jiffies_us(void)
+{
+	uint64_t tmr_start, tmr_end, diff;
+	int err = 0;
+
+	tmr_start = tmr_jiffies_us();
+	sys_usleep(1);
+	tmr_end = tmr_jiffies_us();
+	diff = tmr_end - tmr_start;
+
+	TEST_ASSERT(diff >= 1);
+	TEST_ASSERT(diff < 100);
+
+out:
+	return err;
+}

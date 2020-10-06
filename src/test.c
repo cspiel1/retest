@@ -158,6 +158,8 @@ static const struct test tests[] = {
 	TEST(test_tls_certificate),
 #endif
 	TEST(test_tmr),
+	TEST(test_tmr_jiffies),
+	TEST(test_tmr_jiffies_us),
 	TEST(test_turn),
 	TEST(test_turn_tcp),
 	TEST(test_udp),

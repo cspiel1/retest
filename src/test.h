@@ -217,6 +217,8 @@ int test_sys_rand(void);
 int test_tcp(void);
 int test_telev(void);
 int test_tmr(void);
+int test_tmr_jiffies(void);
+int test_tmr_jiffies_us(void);
 int test_turn(void);
 int test_turn_tcp(void);
 int test_udp(void);
