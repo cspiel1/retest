@@ -94,35 +94,41 @@ int test_tmr(void)
 
 int test_tmr_jiffies(void)
 {
-	uint64_t tmr_start, tmr_end, diff;
+	uint64_t tmr_start, tmr_end, tmr_diff;
 	int err = 0;
 
 	tmr_start = tmr_jiffies();
 	sys_msleep(1);
 	tmr_end = tmr_jiffies();
-	diff = tmr_end - tmr_start;
+	tmr_diff = tmr_end - tmr_start;
 
-	TEST_ASSERT(diff >= 1);
-	TEST_ASSERT(diff < 10);
+	TEST_ASSERT(tmr_diff >= 1);
+	TEST_ASSERT(tmr_diff < 15);
 
 out:
+	if (err)
+		DEBUG_WARNING("timer (%llu) not >=1 && < 15 ms\n", tmr_diff);
+
+
 	return err;
 }
 
 
 int test_tmr_jiffies_us(void)
 {
-	uint64_t tmr_start, tmr_end, diff;
+	uint64_t tmr_start, tmr_end, tmr_diff;
 	int err = 0;
 
 	tmr_start = tmr_jiffies_us();
 	sys_usleep(1);
 	tmr_end = tmr_jiffies_us();
-	diff = tmr_end - tmr_start;
+	tmr_diff = tmr_end - tmr_start;
 
-	TEST_ASSERT(diff >= 1);
-	TEST_ASSERT(diff < 100);
+	TEST_ASSERT(tmr_diff >= 1);
+	TEST_ASSERT(tmr_diff < 2000);
 
 out:
+	if (err)
+		DEBUG_WARNING("timer (%llu) not >=1 && < 2000 us\n", tmr_diff);
 	return err;
 }
